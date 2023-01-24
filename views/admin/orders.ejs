@@ -1,0 +1,70 @@
+<%- include('partials/adminheader.ejs') %> 
+<div class="container-scroller">
+    <%- include('partials/siderbar1.ejs') %> 
+    <div class="container-fluid page-body-wrapper">
+    <%- include('partials/siber2.ejs') %>
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Table with contextual classes</h4>
+        <p class="card-description">
+          ORDERS <code></code>
+        </p>
+        <div class="table-responsive">
+          <table class="table table-bordered table-contextual">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>ORDER ID</th>
+                <th>PAYMENT METHOD</th>
+                <th>PAYMENT STATUS</th>
+                <th>AMOUNT</th>
+                <th>ORDER STATUS</th>
+                <th>DATE</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+                <% for( let i= 0; i<orderDetails.length; i++ ) { %>
+            
+                   
+              <tr>
+                <th scope="row"><%= i+1  %> </th>
+                <td><%=orderDetails[i]._id%> </td>
+                <td><%=orderDetails[i].paymentMethod%> </td>
+                <td><%=orderDetails[i].paymentStatus%> </td>
+                <td><%=orderDetails[i].totalPrice%> </td>
+                <td>
+                    <select name="orderstatus" id="change<%=orderDetails[i]._id%>" onchange="statusChange('<%=orderDetails[i]._id%>')">
+                        <option value="<%=orderDetails[i].orderStatus%>"><%=orderDetails[i].orderStatus%></option>
+                        <option value="Shipped" >Shipped</option>
+                        <option value="Out for Delivery" >Out for Delivery</option>
+                        <option value="Delivered">Delivered</option>
+                      </select>
+                </td>
+                <td><%=orderDetails[i].date%> </td>
+                <td>
+                    <a href="/admin/vieworderdetails/<%=orderDetails[i]._id%> ">
+                        <button class="btn-primary btn-sm">VIEW MORE</button></a>
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    function statusChange(id){
+      const value=document.getElementById('change'+id).value
+      axios.patch('/admin/changestatus',{id:id,value:value}).then(()=>{
+  
+      })
+    }
+  </script>
+                                                                            
+</div>
+<!-- content-wrapper ends -->
+<!-- partial:../../partials/_footer.html -->

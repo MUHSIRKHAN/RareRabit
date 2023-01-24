@@ -1,0 +1,87 @@
+<%- include('partials/userheader.ejs') %>
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div>
+            <% if (userOrderDetails.length) { %>
+             
+           
+        <h6 label-new class="product-label label-new ">ORDERS</h6><BR>
+        </BR>
+       
+        <div class="table-responsive">
+          <table class="table table-bordered table-contextual">
+            <thead>
+              <tr>
+                <th> # </th>
+                <th> ORDER</th>
+               
+                <th> Amount </th>
+                <th> ORDER STATUS </th>
+                <th> DATE </th>
+                <th>PAYMENT METHOD</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for( let i = 0; i <userOrderDetails.length; i++ ) { %>
+                
+              <tr class="table-info">
+                <th scope="row"><%=i+1%> </th>
+                <td> 1 </td>
+               
+                <td> <%=userOrderDetails[i].
+                    totalPrice %>  </td>
+                <td> <%= userOrderDetails[i].orderStatus %>   </td>
+                <td> <%=userOrderDetails[i].date %></td>
+                <td> <%=userOrderDetails[i].
+                    paymentMethod %></td>
+                    
+
+                <td><a class="font-weight-bold text-primary" href="/userOrderDetails/<%=userOrderDetails[i]._id%> ">VIEW MORE</a>  </td>
+                <% if (userOrderDetails[i].orderStatus ==="Delivered") { %>
+                <td> <a href="" onclick="returnOrder('<%=userOrderDetails[i]._id%>')" class="font-weight-bold text-danger">RETURN</a></td>
+                <% } else if (userOrderDetails[i].orderStatus ==="Returned" ||userOrderDetails[i].orderStatus=== "Cancelled") { %>
+                    <% } else { %>
+                        <td> <a  onclick="cancelOrder('<%=userOrderDetails[i]._id%>')" class="font-weight-bold text-danger">CANCEL</a></td>
+                        <% } %>
+    
+              </tr>
+              <% } %>
+              </tr>
+             
+            </tbody>
+          </table>
+          <% } else { %>
+            <p>You haven't made any orders</p>
+            <a href="/shop">Order Now</a>
+           <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    let cancelOrder=(id)=>{
+      alert('fdasddfads')
+        axios.delete('/cancelorder',{
+            data:{
+                id:id
+            }
+        }).then((e)=>{
+            if(e.data.response==="login")location.href="/login"
+        })
+        
+    }
+    let returnOrder = (id) => {
+          axios.delete('/returnorder', {
+            data: {
+              id: id
+            }
+          }).then((e) => {
+            if (e.data.response === "login") location.href = "/login"
+          })
+        }
+</script>

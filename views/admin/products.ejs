@@ -1,0 +1,90 @@
+<%- include('partials/adminheader.ejs') %> 
+
+<div class="container-scroller">
+  <%- include('partials/siderbar1.ejs') %> 
+  <div class="container-fluid page-body-wrapper">
+  <%- include('partials/siber2.ejs') %> 
+
+<div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> Products </h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Product list</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+              <!-- <div class="">
+                <div class="card">
+                  <div class="card-body"> -->
+                    <h4 class="card-title">product list</h4>
+                    
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Product Name</th>
+                            <th>gender</th>
+                            <th>quantity</th>
+                            <th>Price</th>
+                    
+                            <th>description</th>
+                            <th>image</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody class=>
+                          <% if (data.length >0 ) { %>
+                            <% for( let i = 0; i < data.length; i++ ) { %>
+                              <tr>
+                          <th><%=data[i].brandname.brandName %> </th>   
+                              <td>
+                                  <%=data[i].gender.gender%>
+  
+                              </td>
+                              <td>
+                                <%=data[i].quantity%>  
+                              </td>
+                              <td>
+                                <%=data[i].price%>
+                               
+  
+                              </td>
+                              <td>
+                                <%=data[i].description%>
+                              </td>
+                              <td>
+                                  <img src="/product-images/<%=data[i].imagesDetails[0].filename %>" alt="">
+                              </td>
+                              <td>
+                                 <a href="/admin/productedit/<%=data[i]._id%>"> <button type="button" class="btn btn-success">Edit</button></a>                            </td>
+                              <td>
+                                 <a href="/admin/productdelete/<%=data[i]._id%>"> <button type="button" class="btn btn-danger">Delete</button></a>
+                              </td>
+                              
+                                  
+      
+                            
+                            </tr>
+                              <% } %>
+                              <% } else { %>
+                               no products
+                          <% } %>
+                           
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> 
+                <!--  </div> -->
+</div>
+</div>
+  </div>
+</div>
+              
+              
+             

@@ -1,0 +1,497 @@
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<%- include('partials/userheader.ejs') %>
+<main class="main">
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">Checkout<span>Shop</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="checkout__form">
+            
+            <div class="container">
+                <div class="checkout-discount">
+                    
+                        
+                        <input class="form-control" type="text" name="code" id="coupon" placeholder="Coupon code" aria-label="Recipient's " aria-describedby="my-addon">
+                        <% for( let i = 0; i < coupon.length; i++ ) { %>
+                            <P>COUPONS AVILABLE</P>
+                            <h3><%=coupon[i].couponCode%> </h3>
+                        
+                        <% } %>
+                        
+                        <span class="input-group-text text-success" id="my-addon" onclick="couponCheck('<%=subTotal %>')">Apply</span>
+                    </div>
+                  </div>
+                  <span id="couponid" class="text-success"></span>
+                  <span id="couponerrid" class="text-danger"></span>
+                    </form>
+                </div><!-- End .checkout-discount -->
+                <form method="post" action="./addaddress"  >
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Name *</label>
+                                        <input type="text" name="name" id="'name" onkeyup="nullName()" class="form-control" required>
+                                         <p class="text-danger" id="nameerr"></p>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                       
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <label>Country *</label>
+                                <input type="text" name="country" id="country" onkeyup="nullCountry()"class="form-control" required>
+                                <p class="text-danger" id="countryerr"></p>
+
+                                <label> address *</label>
+                                <input type="text" class="form-control" placeholder="House number and Street name"name="address" id="add" onkeyup="nullAdd()" required>
+                                <p class="text-danger" id="adderr"></p>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Town / City *</label>
+                                        <input type="text" name="city" id="city" onkeyup="nullCity()" class="form-control" required>
+                                        <p class="text-danger" id="cityerr"></p>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label>State / County *</label>
+                                        <input type="text" name="state" id="State" onkeyup="nullState()"class="form-control" required>
+                                        <p class="text-danger" id="stateerr"></p>
+
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Postcode / ZIP *</label>
+                                        <input type="text" name="postcode" id="pin" onkeyup="nullPin()" onkeypress="return onlyNumberKey(event)"maxlength="06" class="form-control" required>
+                                        <p class="text-danger" id="pinerr"></p>
+
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label>Phone *</label>
+                                        <input type="tel" name="phone" id="phone" onkeyup="nullPhn()" maxlength="10" onkeypress="return onlyNumberKey(event)" class="form-control" required>
+                                        <p class="text-danger" id="phoneerr"></p>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
+                                    <label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
+                                </div><!-- End .custom-checkbox -->
+
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkout-diff-address">
+                                    <label class="custom-control-label" for="checkout-diff-address">Ship to a different address?</label>
+                                </div><!-- End .custom-checkbox -->
+
+                                <label>Order notes (optional)</label>
+                                <textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                        </div><!-- End .col-lg-9 -->
+                        <aside class="col-lg-3">
+                            
+                            <div class="summary">
+                                <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+                                <table class="table table-summary">
+                                    <thead>
+                                        <tr>
+                                            <th>PRODUCTS 
+                                                <br>
+                                                <br>
+                                                <br>
+                                            <ul class="checkout_total_products">
+                                                <% for( let i = 0; i < cart.cart.length; i++ ) { %>
+            
+                                                    <li><%=cart.cart[i].product_id.brandname.brandName %>   
+                                                        <br>
+                                                              <span><%=cart.cart[i].product_id.price %> </span></li>
+                                                    <% } %>
+
+                                                </th>
+                                                
+                                            </ul>
+                                            <th></th>
+                                            
+                                            
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <th>Total</th>
+                                        <tr class="summary-subtotal">
+                                            <td><h5>TOTAL</h5><%=subTotal %> </td>
+                                            
+                                        </tr><!-- End .summary-subtotal -->
+                                        <tr>
+                                            <td>Shipping:</td>
+                                            <td>Free shipping</td>
+                                        </tr>
+                                        
+                                        <tr class="summary-total">
+                                            <td><h5>OFFER PRICE</h5></td>
+
+                                            <td id="grandtotal"><%= subTotal%></td>
+                                            
+                                      
+                                            
+            
+                                            
+                                        </tr><!-- End .summary-total -->
+                                    </tbody>
+                                </table><!-- End .table table-summary -->
+
+                                <div class="accordion-summary" id="accordion-payment">
+                                    <div class="card">
+                                        <div class="card-header" id="heading-1">
+                                       
+                                        
+                                    </div><!-- End .card -->
+
+                                   
+                                        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
+                                            <div class="card-body">
+                                                Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. 
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-3">
+                                            <h2 class="card-title">
+                                                
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="payment" value="COD" id="flexRadioDefault1" required>
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                      CASH ON DELIVERY
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="payment"required value="onLine" id="flexRadioDefault2" checked>
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                      Razorpay      
+                                                    </label>
+                                                  </div>
+                                                  
+
+                                            
+                                                   
+<br>
+<br>                                           <% if (defaultAddress.length) { %>
+ 
+
+                                             <h5>DELIVERY ADDRESS</h5>
+                                                </a><p><%= defaultAddress[0].name %>  </p>
+                                                <p><%= defaultAddress[0].country %>  </p>
+                                                <p><%= defaultAddress[0].address %>  </p>
+                                                <p><%= defaultAddress[0].city %>  </p>
+                                                <p><%= defaultAddress[0].state %>  </p>
+                                                <p><%= defaultAddress[0].postcode %>  </p>
+                                                <p><%= defaultAddress[0].phone %>  </p>
+                                                <% } %>
+                                            </h2>
+                                        </div>End .card-header
+                                        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
+                                            <div class="card-body">
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-4">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button"name="payment"value="Razorpay" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                                                    Razorpay <small class="float-right paypal-link"></small>
+                                                </a>
+                                            </h2>
+                                        
+                                        </div><!-- End .card-header -->
+                                        <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
+                                            <div class="card-body">
+                                                
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-5">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
+                                                    Credit Card (Stripe)
+                                                    <img src="assets/images/payments-summary.png" alt="payments cards">
+                                                </a>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                        <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#accordion-payment">
+                                            <div class="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+                                </div><!-- End .accordion -->
+                                <button onclick="postOrders()" class="btn btn-outline-primary-2 btn-order btn-block">
+                                    Place Order
+                                     
+                                 </button>
+                             </div>
+                            </div><!-- End .summary -->
+                        </aside><!-- End .col-lg-3 -->
+                    </div><!-- End .row -->
+                </form>
+            </div><!-- End .container -->
+        </div><!-- End .checkout -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->
+</form>
+<script>
+     
+
+    function couponCheck(id){
+    
+        
+        const total=id;
+        const code=document.getElementById('coupon').value
+        axios.get('/couponcheck',{
+            params:{
+                code,
+                total,
+            
+            }
+        }).then((e)=> {
+            if(e.data.response==='login'){
+                location.href="/login"
+                }else if(e.data.status){
+                    alert(e.data.staus)
+                    alert(e.data.grandtotal)
+                    document.getElementById('couponid').innerHTML=e.data.message;
+                    document.getElementById('grandtotal').innerHTML = e.data.grandtotal;
+                }else{
+                    alert(e.data.status)
+                    alert(e.data.message)
+                    document.getElementById('coupenerrid').innerHTML=e.data.message;
+                }
+            })
+            
+        }
+        
+    
+    async function validate() {
+    event.preventDefault()
+    const name = document.getElementById('name').value;
+    const country = document.getElementById('country').value;
+    const add = document.getElementById('add').value;
+    const city = document.getElementById('city').value;
+    const pin = document.getElementById('pin').value;
+    const state = document.getElementById('state').value;
+    const phone = document.getElementById('phone').value;
+    let Return = true;
+    if (name === "") {
+      document.getElementById('nameerr').innerHTML = "Enter your name"
+      Return = false;
+    }
+    if (country === "") {
+      document.getElementById('countryerr').innerHTML = "Enter your country"
+      Return = false;
+    }
+    if (add === "") {
+      document.getElementById('adderr').innerHTML = "Enter your address"
+      Return = false;
+    }
+    if (city === "") {
+      document.getElementById('cityerr').innerHTML = "Enter your city"
+      Return = false;
+    }
+    if (pin === "") {
+      document.getElementById('pinerr').innerHTML = "Enter your postcode"
+      Return = false;
+    }
+    if (state === "") {
+      document.getElementById('stateerr').innerHTML = "Enter your State"
+      Return = false;
+    }
+    if (phone === "") {
+      document.getElementById('phoneerr').innerHTML = "Enter your number"
+      Return = false;
+    }
+    if (Return === true) {
+      const frm = new FormData(event.target)
+      const form = await Object.fromEntries(frm)
+      console.log(form)
+      axios.post('/addaddress', form).then(() => {
+        location.href = "/checkout"
+      })
+    }
+  }
+  async function validateEdit() {
+    const name = document.getElementById('nameid').value;
+    const country = document.getElementById('countryid').value;
+    const add = document.getElementById('addid').value;
+    const city = document.getElementById('cityid').value;
+    const pin = document.getElementById('pinid').value;
+    const state = document.getElementById('stateid').value;
+    const phone = document.getElementById('phoneid').value;
+    let Return = true;
+    if (name === "") {
+      document.getElementById('nameerror').innerHTML = "Enter your name"
+      Return = false;
+    }
+    if (country === "") {
+      document.getElementById('countryerror').innerHTML = "Enter your country"
+      Return = false;
+    }
+    if (add === "") {
+      document.getElementById('adderror').innerHTML = "Enter your address"
+      Return = false;
+    }
+    if (city === "") {
+      document.getElementById('cityerror').innerHTML = "Enter your city"
+      Return = false;
+    }
+    if (pin === "") {
+      document.getElementById('pinerror').innerHTML = "Enter your postcode"
+      Return = false;
+    }
+    if (state === "") {
+      document.getElementById('stateerror').innerHTML = "Enter your State"
+      Return = false;
+    }
+    if (phone === "") {
+      document.getElementById('phoneerror').innerHTML = "Enter your number"
+      Return = false;
+    }
+    if (!Return) {
+      event.preventDefault()
+    }
+  }
+  function nullName() {
+    document.getElementById('nameerror').innerHTML = ""
+  }
+  function nullCountry() {
+    document.getElementById('countryerror').innerHTML = ""
+  }
+  function nullAdd() {
+    document.getElementById('adderror').innerHTML = ""
+  }
+  function nullCity() {
+    document.getElementById('cityerror').innerHTML = ""
+  }
+  function nullState() {
+    document.getElementById('stateerror').innerHTML = ""
+  }
+  function nullPin() {
+    document.getElementById('pinerror').innerHTML = ""
+  }
+  function nullPhn() {
+    document.getElementById('phnerror').innerHTML = ""
+  }
+  function onlyNumberKey(evt) {
+    // Only ASCII character in that range allowed
+    var ASCIICode = evt.which ? evt.which : evt.keyCode;
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) return false;
+    return true;
+  };
+  function postOrders(){
+    event. preventDefault()
+    let result=document.getElementsByName('payment')
+    const newTotal=document.getElementById('grandtotal').innerHTML;
+    const code=document.getElementById('coupon').value;
+    let payment
+    if(result[0].checked|| result[1].checked|| result[2].checked){
+        for(i=0;i<result.length;i++){
+            if(result[i].checked)payment=result[i].value;
+        }
+    }else{
+        document.getElementById('msg').innerHTML="please select payment method"
+        return false;
+    }alert(newTotal)
+    axios.post('/postorders',{
+        payment,
+        newTotal,
+        code
+    }).then((e)=>{
+        if(e.data){
+            if(e.data.response==="login"){
+                location.href="/login"
+            }else if(e.data.response==="success"){
+                location.href="/ordersuccess"
+            }
+            const orders=e.data.orders;
+            const ID=orders.id;
+            const price=orders.amount;
+            const key="rzp_test_JHwOhttKdZtCnK";
+            var options={
+                "key": key, 
+          "amount": price,
+          "currency": "INR",
+          "name": "Acme Corp",
+          "description": "Test Transaction",
+          "image": "https://example.com/your_logo",
+          "order_id": ID,
+          "handler": function(response) {
+            veryfyPayment(response, orders)
+
+            },
+            "prefill": {
+            "name": "Gaurav Kumar",
+            "email": "gaurav.kumar@example.com",
+            "contact": "9999999999"
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+            "color": "#3399cc"
+  }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function(response) {
+
+});
+rzp1.open();
+}
+    })
+  }
+  function verifypayment(paymentStatus,orders){
+    alert("hey")
+    alert(paymentStatus)
+    axios.post('/paymentverify',{
+        paymentStatus,
+        orders,
+    
+
+    }).then((e)=>{
+        
+        location.href="/ordersuccess"
+    })
+  }
+
+  
+
+  
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.0.2/index.global.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+<%- include('partials/userfooter.ejs') %>

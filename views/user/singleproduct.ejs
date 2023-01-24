@@ -1,0 +1,266 @@
+<%- include('partials/userheader.ejs') %>
+<div class="page-content">
+  <div class="container">
+    <div class="product-details-top mb-2">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="product-gallery">
+            <figure class="product-main-image">
+              <img
+                id="product-zoom"
+                src="/product-images/<%= product.imagesDetails[0].filename %>"
+                data-zoom-image="/product-images/<%= product.imagesDetails[0].filename %>"
+                alt="product image"
+              />
+
+              <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+                <i class="icon-arrows"></i>
+              </a>
+            </figure>
+            <!-- End .product-main-image -->
+
+            <div id="product-zoom-gallery" class="product-image-gallery">
+              <a
+                class="product-gallery-item"
+                href="#"
+                data-image="/product-images/<%= product.imagesDetails[1].filename %>"
+                data-zoom-image="/product-images/<%= product.imagesDetails[1].filename %>"
+              >
+                <img
+                  src="/product-images/<%= product.imagesDetails[1].filename %>"
+                  alt="product side"
+                />
+              </a>
+
+              <a
+                class="product-gallery-item"
+                href="#"
+                data-image="/product-images/<%= product.imagesDetails[2].filename %>"
+                data-zoom-image="/product-images/<%= product.imagesDetails[2].filename %>"
+              >
+                <img
+                  src="/product-images/<%= product.imagesDetails[2].filename %>"
+                  alt="product cross"
+                />
+              </a>
+
+              <a
+                class="product-gallery-item active"
+                href="#"
+                data-image="assets/images/products/single/extended/3.jpg"
+                data-zoom-image="assets/images/products/single/extended/3-big.jpg"
+              >
+                <img
+                  src="/product-images/<%= product.imagesDetails[3].filename %>"
+                  alt="product with model"
+                />
+              </a>
+
+              <a
+                class="product-gallery-item"
+                href="#"
+                data-image="assets/images/products/single/extended/4.jpg"
+                data-zoom-image="assets/images/products/single/extended/4-big.jpg"
+              >
+                <img
+                  src="/product-images/<%= product.imagesDetails[0].filename %>"
+                  alt="product back"
+                />
+              </a>
+            </div>
+
+            <!-- End .product-image-gallery -->
+          </div>
+          <!-- End .product-gallery -->
+        </div>
+        <!-- End .col-md-6 -->
+
+        <div class="col-md-6">
+          <div class="product-details">
+            <h1 class="product-title"><%=product.description%></h1>
+            <!-- End .product-title -->
+
+            <div class="ratings-container">
+              <div class="ratings">
+                <div class="ratings-val" style="width: 80%"></div>
+                <!-- End .ratings-val -->
+              </div>
+              <!-- End .ratings -->
+              <a
+                class="ratings-text"
+                href="#product-review-link"
+                id="review-link"
+                >( 2 Reviews )</a
+              >
+            </div>
+            <!-- End .rating-container -->
+
+            <div class="product-price">
+              <h1 class="product-title"><%=product.price%></h1>
+              <!-- End .product-title -->
+            </div>
+            <!-- End .product-price -->
+
+            <div class="product-brandname">
+            
+            </div>
+            <!-- End .product-content -->
+
+            <div class="details-filter-row details-row-size">
+              <label>Color:</label>
+
+              <div class="product-nav product-nav-dots">
+                <a href="#" class="active" style="background: #eab656"
+                  ><span class="sr-only">Color name</span></a
+                >
+                <a href="#" style="background: #333333"
+                  ><span class="sr-only">Color name</span></a
+                >
+                <a href="#" style="background: #3a588b"
+                  ><span class="sr-only">Color name</span></a
+                >
+                <a href="#" style="background: #caab97"
+                  ><span class="sr-only">Color name</span></a
+                >
+              </div>
+              <!-- End .product-nav -->
+            </div>
+            <!-- End .details-filter-row -->
+
+            <div class="details-filter-row details-row-size">
+             
+              <div class="select-custom">
+              
+              </div>
+              <!-- End .select-custom -->
+
+            
+              
+            </div>
+            <!-- End .details-filter-row -->
+
+            <div class="details-filter-row details-row-size">
+             
+             
+              <!-- End .product-details-quantity -->
+            </div>
+            <!-- End .details-filter-row -->
+
+            <div class="product-details-action">
+              <button  onclick="addtocart('<%= product._id%>','<%=product.price%>')" class="btn-product btn-cart" title="cart"
+                ><span>add to cart</span></button
+              >
+
+              <div class="details-action-wrapper">
+                <% if (locals.user) { %>
+                  <a onclick="addtoWishlist(`<%= product._id%>`)" class="btn-product btn-wishlist" title="Wishlist"
+                  ><span>Add to Wishlist</span></a
+                >
+                <% } else { %> <% } %>
+
+                
+                <a href="#" class="btn-product btn-compare" title="Compare"
+                  ><span>Add to Compare</span></a
+                >
+              </div>
+              <!-- End .details-action-wrapper -->
+            </div>
+            <!-- End .product-details-action -->
+
+            <div class="product-details-footer">
+              <div class="product-cat">
+                <span>Category:</span>
+                <a href="#">Women</a>, <a href="#">Shoes</a>,
+                <a href="#">Sandals</a>,
+                <a href="#">Yellow</a>
+              </div>
+              <!-- End .product-cat -->
+
+              <div class="social-icons social-icons-sm">
+                <span class="social-label">Share:</span>
+                <a href="#" class="social-icon" title="Facebook" target="_blank"
+                  ><i class="icon-facebook-f"></i
+                ></a>
+                <a href="#" class="social-icon" title="Twitter" target="_blank"
+                  ><i class="icon-twitter"></i
+                ></a>
+                <a
+                  href="#"
+                  class="social-icon"
+                  title="Instagram"
+                  target="_blank"
+                  ><i class="icon-instagram"></i
+                ></a>
+                <a
+                  href="#"
+                  class="social-icon"
+                  title="Pinterest"
+                  target="_blank"
+                  ><i class="icon-pinterest"></i
+                ></a>
+              </div>
+            </div>
+            <!-- End .product-details-footer -->
+          </div>
+          <!-- End .product-details -->
+        </div>
+        <!-- End .col-md-6 -->
+      </div>
+      <!-- End .row -->
+    </div>
+    <!-- End .product-details-top -->
+  </div>
+  <!-- End .container -->
+  <%- include('partials/userfooter.ejs') %>
+
+
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    addtoWishlist = (id) => {
+
+      axios.put("/addWhishlist", {
+          id: id} )
+          .then((e) => {
+            if(e.data.response
+            )
+            alert('Product added to wishlist')});
+            
+    };
+    addtocart = (id) => {
+    try {
+      
+      axios.post('/addCart', {
+        id: id
+      }).then((e) => {
+        if (e.data.response === "login") location.href = "/login"
+        else if (e.data.response) {
+          
+          Swal.fire({
+            icon: 'success',
+            title: 'Product added to cart',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        } else {
+          
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Sorry,please login ' 
+            
+          })
+        }
+      })
+    } catch (error) {
+      Swal.fire(
+        'The Internet?',
+        'That thing is still around?',
+        'question'
+      )
+    }
+  }
+  </script>
+</div>

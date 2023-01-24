@@ -1,0 +1,67 @@
+<%- include('partials/adminheader.ejs') %> 
+
+<div class="container-scroller">
+  <%- include('partials/siderbar1.ejs') %> 
+  <div class="container-fluid page-body-wrapper">
+  <%- include('partials/siber2.ejs') %> 
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title"> COUPON LIST </h3>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+           
+          </ol>
+        </nav>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+             
+              </p>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>coupon Code</th>
+                      <th>Discount</th>
+                      <th>Coupon  Count</th>
+                      <th>Expiry Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <% for(let i=0;i<coupons.length;i++){ %> 
+                    <tr>
+                      <th scope="row"><%=i+1  %> </th>
+                      <td><%=coupons[i].couponCode%> </td>
+              <td><%=coupons[i].discount%></td> 
+              <td><%=coupons[i].couponCount%></td>
+              <td><%=coupons[i].EndingDate%></td>
+              <td>
+                <td>
+                  <% if (coupons[i].couponStatus=== true) { %>
+                  <button class="btn-danger btn-sm" onclick="blockCoupon('<%=coupons[i]._id%>')" >Deactivate</button> 
+                   <% } else { %>
+                  <button class="btn-success btn-sm" >Activate</button>
+                  <% } %>
+                </td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+<script>
+  function blockCoupon(id){
+    axios.patch('/admin/couponblock',{id}).then(()=>{
+    })
+  }
+</script>
+
+        

@@ -1,0 +1,71 @@
+<%- include('partials/adminheader.ejs') %> 
+
+<div class="container-scroller">
+  <%- include('partials/siderbar1.ejs') %> 
+  <div class="container-fluid page-body-wrapper">
+  <%- include('partials/siber2.ejs') %> 
+
+<div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title">USERLIST </h3>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Tables</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="row">
+        
+              <h4 class="card-title"></h4>
+              <p class="card-description">users<code></code>
+              </p>
+              <div class="table-responsive">
+                <table class="table">
+                  
+                    <tr>
+                      <th>NO</th>
+                      <th>eamil</th>
+                      <th>phone number</th>
+                      
+                      <th scope="col">Action</th>
+                    </tr>
+                    <tbody class="text-center">
+                        <% for( let i=0; i < users.length; i ++ ) { %>
+                            <tr>
+                                <td>
+                                    <%= i+1 %>
+                                </td>
+                               
+                                <td>
+                                    <%= users[i].email %>
+                                </td>
+                                <td>
+                                    <%= users[i].mobile %>
+                                </td>
+                                <td>
+                                    
+                                    <% if (!users[i].isBanned) { %>
+                                        <a href="/admin/blockUser/<%= users[i]._id %> "
+                                            onclick="return confirm('Do you want to block <%= users[i].name %> ?')"
+                                            class="btn btn-success px-4">Block
+                                        </a>
+                                        <% } else { %>
+                                            <a href="/admin/unblockUser/<%= users[i]._id %> "
+                                                class="btn btn-danger">Unblock
+                                            </a>
+                                            <% } %>
+                                </td>
+                            </tr>
+                            <% } %>
+
+
+                    </tbody>
+                  
+                    
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>

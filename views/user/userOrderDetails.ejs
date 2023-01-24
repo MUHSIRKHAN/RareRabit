@@ -1,0 +1,50 @@
+<%- include('partials/userheader.ejs') %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">ORDERS</h4>
+       
+        <div class="table-responsive">
+          <table class="table table-bordered table-contextual">
+            <thead>
+              <tr>
+             
+                <th>PRODUCT NAME</th>
+                <th>QUANTITY</th>
+                <th>TOTAL</th>
+                <th>ADDRESS</th>
+                
+               
+              </tr>
+            </thead>
+            <tbody>
+              <% for( let i = 0; i <orderDetail.orderedItems.length; i++ ) { %>
+                
+                <tr class="table-info">
+                 
+                    <td><%= orderDetail.orderedItems[i].product_id.description %>   </td>
+                    <td><%= orderDetail.orderedItems[i].   quantity%>   </td>
+                    <td><%= orderDetail.orderedItems[i].   total%>   </td>
+                    <td><%= orderDetail.deliveryAddress[0].name%> ><%= orderDetail.deliveryAddress[0].address%> 
+                      </td>
+                   
+                  
+                      <% } %>    
+               
+            </tbody>
+          </table>
+        
+        </div>
+        <div class="cta-text text-center">
+          
+          <a href="/shop" class="btn btn-primary btn-rounded"><span>CONTINUE SHOPPING</span><i class="icon-long-arrow-right"></i></a>
+      </div><!-- End .cta-text -->
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<!-- content-wrapper ends -->
+<!-- partial:../../partials/_footer.html -->z

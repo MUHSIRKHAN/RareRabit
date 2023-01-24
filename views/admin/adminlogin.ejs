@@ -1,0 +1,129 @@
+<%- include('partials/adminheader.ejs') %> 
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/adminassets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/adminassets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/adminassets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/adminassets/images/favicon.png" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+            <div class="card col-lg-4 mx-auto">
+              <div class="card-body px-5 py-5">
+                <h3 class="card-title text-left mb-3">Login</h3>
+                <form action="/admin/login" method="post">
+                  <div class="form-group">
+                    <label>email </label>
+                    <input type="email" name="email" id="login" placeholder="email id" name="email" class="form-control p_input">
+                  </div>
+                  <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password"id="password" name="password" placeholder="enter password" class="form-control p_input">
+                  </div>
+                  <div class="form-group d-flex align-items-center justify-content-between">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="submit" class="form-check-input"> Remember me </label>
+                    </div>
+                    <a href="#" class="forgot-pass">Forgot password</a>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                 
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    
+
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/adminassets/vendors/js/vendor.bundle.base.js">
+       function validate() {
+      let email = document.getElementById('login')
+      let password = document.getElementById('password')
+      let emailwarning = document.getElementById('emailidwarning')
+      let passwordwarning = document.getElementById('passwordidwarning')
+      document.getElementById("errmsg").innerHTML = ""
+      event.preventDefault();
+      let form = event.target.form;
+      let validation = true;
+      emailwarning.innerHTML = "";
+      passwordwarning.innerHTML = "";
+      if (email.value === "") {
+        emailwarning.innerHTML = "Please enter your email id"
+        validation = false
+      }
+      if (password.value === "") {
+        passwordwarning.innerHTML = "Please enter your password"
+        validation = false
+      }
+      if (validation) {
+        email = email.value
+        password = password.value
+        try {
+          axios.post('/admin/login', {
+            email: email,
+            password: password
+          }).then((e) => {
+            if (!e.data.response) {
+              form.submit();
+              location.href = '/admin';
+            } else {
+              document.getElementById("errmsg").innerHTML = "Invalid credentials";
+            }
+          })
+        } catch (error) {
+          console.log(error)
+        }
+        return validation
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+  </script>
+
+    </script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/adminassets/js/off-canvas.js"></script>
+    <script src="/adminassets/js/hoverable-collapse.js"></script>
+    <script src="/adminassets/js/misc.js"></script>
+    <script src="/adminassets/js/settings.js"></script>
+    <script src="/adminassets/js/todolist.js"></script>
+    <!-- endinject -->
+  </body>
+</html>

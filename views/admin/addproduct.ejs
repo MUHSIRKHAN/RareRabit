@@ -1,0 +1,130 @@
+<%- include('partials/adminheader.ejs') %> 
+
+
+<div class="container-scroller">
+  <%- include('partials/siderbar1.ejs') %> 
+  <div class="container-fluid page-body-wrapper">
+  <%- include('partials/siber2.ejs') %> 
+
+        <div class="main-panel">
+          <div class="container-scroller">
+         
+          <div class="container-fluid page-body-wrapper">
+        
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">ADD PRODUCTS</h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#"></a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    
+                  </li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+
+              <div class="col-12 grid-margin stretch-card">
+                <div class="">
+                  <div class="">
+                    <h4 class=""></h4>
+                    <p class=""></p>
+                    <form class="forms-sample" action="/admin/addProduct" method="post" enctype="multipart/form-data">
+                      <div class="form-group">
+                        
+                        <label for="exampleInputName1">BRAND NAME</label>
+                       <select name="brandname" id="">
+                        <% for( let i = 0; i < brand.length; i++ ) { %>
+
+                          <option value="<%=brand[i]._id %>"><%=brand[i].brandName %> </option>
+                        <% } %>
+                      </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">quantity</label>
+                        <input name="quantity"
+                          type="number"
+                          class="form-control"
+                          id="exampleInputName1"
+                          placeholder="quantity"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <select class="form-select" aria-label="Default select example">
+  
+                          
+                      <div class="form-group">
+                        <label for="exampleInputName1">color</label>
+                        <input name="color"
+                          type="text"
+                          class="form-control"
+                          id="exampleInputName1"
+                          placeholder="color"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail3">size</label>
+                        <input name="size"
+                          type="text"
+                          class="form-control"
+                          id="exampleInputEmail3"
+                          placeholder="size"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword4">Price</label>
+                        <input name="price"
+                          type="number"
+                          class="form-control"
+                          id="exampleInputPassword4"
+                          placeholder="price"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleSelectGender">gender</label>
+                        <select class="" name="gender" id="exampleSelectGender">
+                          <% for( let i = 0; i < gender.length; i++ ) { %>
+
+                            <option value="<%=gender[i]._id%>"><%=gender[i].gender%> </option>
+                          <% } %>
+                        </select>
+                      </div>
+                      <div class="input-group mb-3">
+                        <input type="file" name="Image" class="form-control"  multiple>
+                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="exampleTextarea1">description</label>
+                        <textarea name="description"
+                          class="form-control"
+                          id="exampleTextarea1"
+                          rows="4"
+                        ></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">
+                        Submit
+                      </button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+             
+              
+            
+              
+            </div>
+          </div>
+         
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+
+    <!-- Plugin js for this page -->
+    
