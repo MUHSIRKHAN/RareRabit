@@ -1,9 +1,13 @@
 <%- include('partials/adminheader.ejs') %> 
+<script src=”https://unpkg.com/axios/dist/axios.min.js”></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 
 <div class="container-scroller">
   <%- include('partials/siderbar1.ejs') %> 
   <div class="container-fluid page-body-wrapper">
   <%- include('partials/siber2.ejs') %> 
+
   <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
@@ -14,10 +18,7 @@
           </ol>
         </nav>
       </div>
-      <div class="row">
-        <div class="col-lg-6 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body">
+  
              
               </p>
               <div class="table-responsive">
@@ -33,11 +34,13 @@
                     </tr>
                   </thead>
                   <tbody>
+
                   <% for(let i=0;i<coupons.length;i++){ %> 
                     <tr>
                       <th scope="row"><%=i+1  %> </th>
                       <td><%=coupons[i].couponCode%> </td>
               <td><%=coupons[i].discount%></td> 
+              
               <td><%=coupons[i].couponCount%></td>
               <td><%=coupons[i].EndingDate%></td>
               <td>
@@ -45,7 +48,7 @@
                   <% if (coupons[i].couponStatus=== true) { %>
                   <button class="btn-danger btn-sm" onclick="blockCoupon('<%=coupons[i]._id%>')" >Deactivate</button> 
                    <% } else { %>
-                  <button class="btn-success btn-sm" >Activate</button>
+                  <button class="btn-success btn-sm" onclick="blockCoupon('<%=coupons[i]._id%>')" >Activate</button>
                   <% } %>
                 </td>
                     </tr>
@@ -58,8 +61,9 @@
         </div>
         
 <script>
-  function blockCoupon(id){
-    axios.patch('/admin/couponblock',{id}).then(()=>{
+  function blockCoupon(id){alert()
+    axios.patch('/admin/couponblock',{id}).then((res)=>{
+      location.reload()
     })
   }
 </script>

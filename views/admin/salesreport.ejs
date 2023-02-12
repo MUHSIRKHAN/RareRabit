@@ -99,7 +99,7 @@
                 <table
                   id="example"
                   class="items-center justify-center w-full mb-0 ml-5 align-top border-collapse dark:border-white/40 text-slate-500 display nowrap"
-                  style="width: 95%;padding-bottom: 25vh;color:black;"
+                  style="width: 95%;padding-bottom: 25vh;color:white;"
                 >
                   <thead class="align-bottom">
                     <tr>
@@ -131,7 +131,7 @@
                       <td
                         class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent"
                       >
-                        <h6 class="mb-0 text-sm leading-normal dark:text-white">
+                        <h6 class="mb-0 text-sm leading-normal text-black">
                           <%= report._id %>
                         </h6>
                       </td>
@@ -139,7 +139,7 @@
                         class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent"
                       >
                         <p
-                          class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60"
+                          class="mb-0 text-sm font-semibold leading-normal text-black dark:opacity-60"
                         >
                           <%= report.totalPrice %>
                         </p>
@@ -148,7 +148,7 @@
                         class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent"
                       >
                         <p
-                          class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60"
+                          class="mb-0 text-sm font-semibold leading-normal text-black dark:opacity-60"
                         >
                           ₹ <%=parseFloat(report.totalPrice*25/100).toFixed(1)%>
                         </p>
@@ -157,7 +157,7 @@
                         class="p-2 align-middle border-b whitespace-nowrap shadow-transparent"
                       >
                         <span
-                          class="text-xs font-semibold dark:text-white dark:opacity-60"
+                          class="text-xs font-semibold text-black dark:opacity-60"
                         >
                           <%= report.count %>
                         </span>

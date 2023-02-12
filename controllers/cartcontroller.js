@@ -17,6 +17,11 @@ exports.getcart = async (req, res, next) => {
     });
     const cartList = cart?.cart;
     const coupon = await couponModel.find({});
+    console.log("CaAAAA");
+    console.log(cart);
+    console.log("AAA");
+    
+
     res.render("user/cart", { cart, cartList, coupon });
   } catch (error) {
     next(error);

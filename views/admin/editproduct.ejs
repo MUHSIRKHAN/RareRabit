@@ -1,8 +1,9 @@
 <%- include('partials/adminheader.ejs') %> 
+
 <div class="container-scroller">
-<%- include('partials/_sidebar.ejs') %> 
-<div class="container-fluid page-body-wrapper">
-<%- include('partials/_navbar.ejs') %> 
+  <%- include('partials/siderbar1.ejs') %> 
+  <div class="container-fluid page-body-wrapper">
+  <%- include('partials/siber2.ejs') %> 
 
 <div class="main-panel">
     <div class="content-wrapper">
@@ -23,51 +24,32 @@
             <div class="card-body">
               <h4 class="card-title">Default form</h4>
               <p class="card-description">Basic form layout</p>
-              <form class="forms-sample">
+              <form class="forms-sample"  action="/admin/productEdit/<%= product._id %>" method="post"> 
+                <div class="row">
+                 
+                  </div>
                 <div class="form-group">
-                  <label for="exampleInputUsername1">Username</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputUsername1"
-                    placeholder="Username"
-                  />
+                  <label for="exampleInputEmail1">PRICE</label>
+                  <input class="form-control" type="search" id="priceid" name="price" onkeyup="nullPrice()" onkeypress="return onlyNumberKey(event)" value="<%= product.price%>" />
+                  <p class="text-danger" id="errorprice"></p>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Email"
-                  />
+                  <label for="exampleInputPassword1">QUANTITY</label>
+                  <input class="form-control" type="search" id="quantityid" name="quantity" onkeyup="nullQuantity()" value="<%= product.quantity%>" onkeypress="return onlyNumberKey(event)" />
+                  <p class="text-danger" id="errorquantity"></p>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Password"
-                  />
+                  <label for="exampleInputPassword1">description</label>
+                  <input class="form-control" type="search" id="descriptionid" name="description" onkeyup="nullDescription()" value="<%= product.description%>" onkeypress="return onlyNumberKey(event)" />
+                  <p class="text-danger" id="errorquantity"></p>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputConfirmPassword1"
-                    >Confirm Password</label
-                  >
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="exampleInputConfirmPassword1"
-                    placeholder="Password"
-                  />
-                </div>
+                
+             
+             
                 <div
                   class="form-check form-check-flat form-check-primary"
                 >
-                  <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" />
-                    Remember me
+                  
                   </label>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">
@@ -78,3 +60,9 @@
             </div>
           </div>
         </div>
+        <script>
+          const pName = document.getElementById("pnameid").value;
+    const price = document.getElementById("priceid").value;
+    const description = document.getElementById("descriptionid").value;
+    const quantity = document.getElementById("quantityid").value;
+        </script>

@@ -140,6 +140,7 @@ toviewUserorder:async(req,res,next)=>{
         .sort({_id:-1})
         .then((userOrderDetails)=>{
             res.render("user/userorderinfo",{userOrderDetails,user})
+            
         })
     }catch(error){
         console.log(error.message);
@@ -203,7 +204,8 @@ userOrderDetails:async(req,res,next)=>{
         console.log(ID)
         console.log('orderDetail');
        const orderDetail=  await orderModel.findById(ID).populate({path:'orderedItems.product_id',model:'Products',populate:{path:'brandname',model:'brandName'}})
-       console.log(orderDetail);
+       console.log('hhhh');
+       console.log(orderDetail.orderedItems);
         res.render("user/userOrderDetails",{orderDetail})
        }catch(error){
          next(error)
