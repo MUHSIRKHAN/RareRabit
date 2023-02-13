@@ -44,7 +44,7 @@ router.get("/couponcheck",usercontroller. tocouponcheck)
 
 router.get("/orderSuccess",sessionCheck,toOrderSuccess)
 router.post("/postorders",ordercontroller. toOrder)
-router.get("/orderinfo",usercontroller.toOrderinfo )
+router.get("/orderinfo",sessionCheck, usercontroller.toOrderinfo )
 router.delete("/cancelorder",ordercontroller.tocancelOrder);
 
 router.delete("/returnorder",ordercontroller.tocancelOrder);

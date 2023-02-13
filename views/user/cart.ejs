@@ -71,6 +71,8 @@
 		   <input type="text" id="quantityBox<%=cart.product_id._id %>" class="form-control" value="<%=cart.quantity%>">
 		   <i class="bi bi-caret-right"
 		    onclick="decQuantity(`<%=cart.product_id._id %>`)"></i>
+			
+			
 
 			
 
@@ -229,10 +231,13 @@ function checkOut() {
 const decQuantity = (id) => {	
 
 
-console.log(id);
+
 axios.patch("/quantityDec", { id: id }).then((e) => {
 if (e.data.response) {
 document.getElementById("quantityBox" + id).value = e.data.quantity;
+document.getElementById('sub').innerHTML = e.data.subtotal;
+		document.getElementById('cartTotal').innerHTML = e.data.subtotal;
+		document.getElementById('totalBoxx' + id).innerHTML = e.data.total;
 }
 }).catch((err)=>{console.log(err.message)})
 

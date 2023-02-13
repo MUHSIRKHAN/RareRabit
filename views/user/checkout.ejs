@@ -208,7 +208,7 @@
                                                 <p><%= defaultAddress[0].phone %>  </p>
                                                 <% } %>
                                             </h2>
-                                        </div>End .card-header
+                                        </div>
                                         <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
                                             <div class="card-body">
                                             </div><!-- End .card-body -->
@@ -246,10 +246,13 @@
                                         </div><!-- End .collapse -->
                                     </div><!-- End .card -->
                                 </div><!-- End .accordion -->
+                                <%if(defaultAddress.length==0)  { %>
+                                    <% } else { %>
                                 <button onclick="postOrders()" class="btn btn-outline-primary-2 btn-order btn-block">
                                     Place Order
                                      
                                  </button>
+                                 <% } %>
                              </div>
                             </div><!-- End .summary -->
                         </aside><!-- End .col-lg-3 -->
@@ -278,13 +281,12 @@
             if(e.data.response==='login'){
                 location.href="/login"
                 }else if(e.data.status){
-                    alert(e.data.staus)
-                    alert(e.data.grandtotal)
+                    
                     document.getElementById('couponid').innerHTML=e.data.message;
                     document.getElementById('grandtotal').innerHTML = e.data.grandtotal;
                 }else{
-                    alert(e.data.status)
-                    alert(e.data.message)
+                    
+                    
                     document.getElementById('coupenerrid').innerHTML=e.data.message;
                 }
             })
@@ -420,7 +422,7 @@
     }else{
         document.getElementById('msg').innerHTML="please select payment method"
         return false;
-    }alert(newTotal)
+    }
     axios.post('/postorders',{
         payment,
         newTotal,

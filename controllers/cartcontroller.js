@@ -158,7 +158,7 @@ exports.quantityDec = async (req, res) => {
         $inc: {
           "cart.$.quantity": -1,
           "cart.$.total": -productPrice,
-          subtotal: -productPrice,
+          subTotal: -productPrice,
         },
       }
     );
@@ -171,7 +171,7 @@ exports.quantityDec = async (req, res) => {
         },
         {
           $project: {
-            subtotal: 1,
+            subTotal: 1,
             cart: {
               $filter: {
                 input: "$cart",
@@ -187,8 +187,9 @@ exports.quantityDec = async (req, res) => {
         },
       ])
       .then((quantity) => {
+        console.log(quantity[0]);
         const total = quantity[0].cart[0].total;
-        const subtotal = quantity[0].subtotal;
+        const subtotal = quantity[0].subTotal;
         const quan = quantity[0].cart[0].quantity;
         res.json({
           response: true,

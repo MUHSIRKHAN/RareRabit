@@ -204,8 +204,8 @@ userOrderDetails:async(req,res,next)=>{
         console.log(ID)
         console.log('orderDetail');
        const orderDetail=  await orderModel.findById(ID).populate({path:'orderedItems.product_id',model:'Products',populate:{path:'brandname',model:'brandName'}})
-       console.log('hhhh');
-       console.log(orderDetail.orderedItems);
+       console.log(orderDetail);
+       
         res.render("user/userOrderDetails",{orderDetail})
        }catch(error){
          next(error)

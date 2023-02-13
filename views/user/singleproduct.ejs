@@ -194,15 +194,27 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     addtoWishlist = (id) => {
-
+try{
       axios.put("/addWhishlist", {
           id: id} )
           .then((e) => {
-            if(e.data.response
-            )
-            alert('Product added to wishlist')});
+            if(e.data.response==="login")location.href="/login"
+            else if(e.data.response){
+              Swal.fire({
+                icon:'success',
+                title:"added to wishlist",
+                showConfirmButton:false,
+                timer:1500
+              })
+            } 
+            });
 
-    };
+    }catch(error){
+      Swal.fire(
+        'the network?..error'
+      )
+    }
+  }
     addtocart = (id) => {
     try {
 
@@ -237,4 +249,4 @@
     }
   }
   </script>
-</div>
+

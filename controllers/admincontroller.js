@@ -400,7 +400,7 @@ module.exports = {
       const couponID = req.body.id;
       console.log(req.body);
       
-      await couponModel.updateOne(couponID, { $set:{couponStatus: false}  });
+      await couponModel.findByIdAndUpdate(couponID, { $set:{couponStatus: false}  });
       
      res.sendStatus(200)
     } catch (error) {
