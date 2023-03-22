@@ -71,15 +71,19 @@ module.exports = {
   },
 
   adminloginPost: async (req, res) => {
+
+
     let user = await adminModel.findOne({ email: req.body.email });
-    if (user) {
-      await bcrypt.compare(req.body.password, user.password).then((status) => {
-        req.session.user = true;
-        res.redirect("/admin");
-      });
-    } else {
-      res.redirect("/admin/dashboard");
-    }
+
+    if(!user) return res.redirect("/admin")
+
+    const match = await bcrypt.compare(req.body.password, user.password)
+
+if(!match) return  res.redirect("/admin")
+
+req.session.user = true;
+return res.redirect("/admin/dashboard");
+
   },
   userview: async (req, res) => {
     let users = await User.find({});
