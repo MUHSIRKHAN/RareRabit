@@ -81,7 +81,7 @@ module.exports = {
 
 if(!match) return  res.redirect("/admin")
 
-req.session.user = true;
+req.session.user = true;    
 return res.redirect("/admin/dashboard");
 
   },
