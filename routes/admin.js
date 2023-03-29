@@ -4,29 +4,30 @@ const fileUpload = require('../middlewears/multer')
 const admincontroller = require('../controllers/admincontroller');
 const admin=require('../controllers/admincontroller');
 const usercontroller = require('../controllers/usercontroller');
+const { adminSession } = require('../middlewears/adminsession');
 
 
-router.get('/dashboard',admincontroller.dashboard)
+router.get('/dashboard',adminSession, admincontroller.dashboard)
 router.get('/',admincontroller.adminlogin)
 router.post('/login',admincontroller.adminloginPost)
-router.get('/addproduct',admincontroller.adminaddproduct)
+router.get('/addproduct',adminSession, admincontroller.adminaddproduct)
 router.post('/addProduct', fileUpload.upload.array("Image",4), admin.adminaddproductpost)
-router.get('/addBrandName', admin.addBrandName)
+router.get('/addBrandName', adminSession, admin.addBrandName)
 
-router.post('/addBrand', admin.BrandNameUpdate)
+router.post('/addBrand', adminSession, admin.BrandNameUpdate)
 
-router.get('/deleteBrandName/:id', admin.deleteBrandName) 
+router.get('/deleteBrandName/:id',adminSession, admin.deleteBrandName) 
 
-router.put('/EditBrandName', admin.EditBrandName)
+router.put('/EditBrandName', adminSession, admin.EditBrandName)
 router.get('/genderType', admin.genderType)
 
 router.post('/genderType', fileUpload.upload.array('image',1), admin.genderTypeAdd)
 
-router.get('/deleteGender/:id', admin.deleteGender)
+router.get('/deleteGender/:id', adminSession, admin.deleteGender)
 
 router.post('/Editgender', fileUpload.upload.array('image'), admin.editGender)
-router.get('/Products',admin.viewproducts)
-router.get('/Users', admin.userview)
+router.get('/Products',adminSession, admin.viewproducts)
+router.get('/Users',adminSession, admin.userview)
 router.get('/productdelete/:id',admin.productdelete)
 router.get('/productedit/:id', admin.editPage)
 router.post('/productEdit/:id',admin.productedit)
